@@ -1,19 +1,33 @@
-SELECT DISTINCT title FROM titles ORDER BY title DESC
--- Technique Leader, Staff, Senior Staff, Senior Engineer, Manager, Engineer, Assistant Engineer
+USE `employees`;
+SELECT * FROM employees
+WHERE first_name IN ('Irena', 'Vidya', 'Maya')
+ORDER BY first_name;
+-- Irena R and Vidya S
+SELECT * FROM employees
+WHERE first_name = 'Irena'
+OR first_name = 'Vidya'
+OR first_name = 'Maya'
+ORDER BY first_name, last_name;
+-- Irena A and Vidya Z
 
 SELECT * FROM employees
-WHERE birth_date LIKE '%-12-25'
-AND hire_date BETWEEN '1990-01-01' AND '1999-12-31'
-ORDER BY hire_date
-LIMIT 5
--- Alselm Cappello, Utz Mandell, Bouchung Schreiter, Baocai Kushner, Petter Stroustrup
+WHERE first_name IN ('Irena', 'Vidya', 'Maya')
+ORDER BY last_name, first_name;
+-- Irena A and Maya Z
 
 SELECT * FROM employees
-WHERE birth_date LIKE '%-12-25'
-AND hire_date BETWEEN '1990-01-01' AND '1999-12-31'
-ORDER BY hire_date
-LIMIT 5 OFFSET 45
+WHERE last_name LIKE 'e%e'
+ORDER BY emp_no;
+-- 899 employees 10021 Ramzi E and 499648 Tadahiro E
 
--- LIMIT will ensure each 'page' is 5 names long while OFFSET can set the 'page' number by skipping through a number of names until the desired 'page' is reached
+SELECT * FROM employees
+WHERE last_name LIKE 'e%e'
+ORDER BY hire_date DESC;
+-- Teiji E Newest, Sergi E oldest
 
+SELECT * FROM employees
+WHERE hire_date BETWEEN '1990-01-01' AND '1999-12-31'
+AND birth_date LIKE '%-12-25'
+ORDER BY birth_date, hire_date DESC;
+-- Khun is oldest newest, and Douadi is newest Oldest
 
