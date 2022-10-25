@@ -1,10 +1,10 @@
 USE employees;
 
-SELECT CONCAT(first_name, SPACE(1), last_name) AS 'full_name' FROM employees
+SELECT CONCAT(first_name, SPACE(1), last_name) AS full_name FROM employees
 WHERE last_name LIKE 'e%' AND last_name LIKE '%e';
 -- created full_name from concat last and first name
 
-SELECT UPPER(CONCAT(first_name, SPACE(1), last_name)) AS 'full_name' FROM employees
+SELECT UPPER(CONCAT(first_name, SPACE(1), last_name)) AS full_name FROM employees
 WHERE last_name LIKE 'e%' AND last_name LIKE '%e';
 -- capitalized the names
 
@@ -24,4 +24,4 @@ SUBSTR(last_name, 1, 4),
 '_', 
 SUBSTR(birth_date, 6, 2), 
 SUBSTR(birth_date, 3, 2))) 
-AS 'username', first_name, last_name, birth_date FROM employees 
+AS username, first_name, last_name, birth_date FROM employees 
