@@ -107,7 +107,10 @@ GROUP BY d.dept_name
 ORDER BY average DESC;
 -- AVG salary by dep using both current and historical data
 
-/*SELECT CONCAT(e.first_name, " ", e.last_name) AS full_name, d.dept_name, CONCAT(m.first_name, " ", m.last_name) AS manager FROM departments AS d
+-- PREVIOUS ATTEMPS
+
+/*
+SELECT CONCAT(e.first_name, " ", e.last_name) AS full_name, d.dept_name, CONCAT(m.first_name, " ", m.last_name) AS manager FROM departments AS d
 JOIN dept_manager AS dm
 	ON dm.dept_no = d.dept_no
 JOIN dept_emp AS de
@@ -149,9 +152,9 @@ WHERE s.to_date >= NOW()
 GROUP BY d.dept_name) AS sal)
 JOIN employees AS e
 	ON e.emp_no = sal.emp_no
-GROUP BY full_name;*/
+GROUP BY full_name;
 
-/*
+
 SELECT e.first_name
 FROM (
 SELECT MAX(salary), de.emp_no 
@@ -177,8 +180,10 @@ JOIN salaries AS s
 WHERE s.to_date >= NOW()
 GROUP BY d.dept_name;
 */
+-- Subqueries appear to be the only way to accomplish task, however still cannot get just 1 name to show per dep
+-- 2 deps where highest salary has two employees making the same amount
 
-SELECT s. department, s.highest_salary, CONCAT(e.first_name, ' ', e.last_name) AS full_name
+SELECT s.department, s.highest_salary, CONCAT(e.first_name, ' ', e.last_name) AS full_name
 FROM (
 SELECT s.department, s.highest_salary, y.emp_no
 FROM (
@@ -205,6 +210,5 @@ GROUP BY s.department, s.highest_salary, y.emp_no
 ORDER BY s.department) AS s
 JOIN employees AS e
 	ON s.emp_no = e.emp_no;
-describe salaries;
 
 
