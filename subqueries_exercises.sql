@@ -21,7 +21,7 @@ JOIN titles AS t
 	ON t.emp_no = f.emp_no
 WHERE de.to_date < CURDATE() AND t.to_date < CURDATE() AND s.to_date < CURDATE()
 GROUP BY f.first_name, f.last_name;
--- There are 592150 employees no longer at the company
+-- There are 72074 employees no longer at the company
 
 SELECT l.full_name, l.dept_name, l.gender FROM (
 SELECT d.dept_name, CONCAT(e.first_name, " ", e.last_name) AS full_name, gender FROM departments AS d
