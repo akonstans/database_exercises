@@ -35,14 +35,14 @@ WHERE dm.to_date >= NOW() AND e.gender = 'F'
 ORDER BY d.dept_name;
 -- All current female managers
 
-SELECT t.title, COUNT(DISTINCT de.emp_no) AS total FROM dept_emp AS de
+SELECT t.title, COUNT(de.emp_no) AS total FROM dept_emp AS de
 JOIN titles AS t
 	ON t.emp_no = de.emp_no
 JOIN employees AS e
 	ON e.emp_no = de.emp_no
 JOIN departments AS d
 	ON d.dept_no = de.dept_no
-WHERE d.dept_name = 'Customer Service' AND t.to_date = '9999-01-01'
+WHERE d.dept_name = 'Customer Service' AND t.to_date >= NOW() AND de.to_date >= NOW()
 GROUP BY t.title
 ORDER BY t.title ASC;
 -- Current employees by current title in customer service
