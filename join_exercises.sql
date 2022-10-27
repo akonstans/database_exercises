@@ -107,9 +107,6 @@ GROUP BY d.dept_name
 ORDER BY average DESC;
 -- AVG salary by dep using both current and historical data
 
--- PREVIOUS ATTEMPS
-
-/*
 SELECT CONCAT(e.first_name, " ", e.last_name) AS full_name, d.dept_name, CONCAT(m.first_name, " ", m.last_name) AS manager FROM departments AS d
 JOIN dept_manager AS dm
 	ON dm.dept_no = d.dept_no
@@ -121,9 +118,12 @@ JOIN employees AS m
 	ON m.emp_no = dm.emp_no
 WHERE de.to_date >= NOW() AND dm.to_date >= NOW() 
 GROUP BY full_name, manager, d.dept_name
-ORDER BY d.dept_name;
+ORDER BY full_name;
 -- List of current employees in their current departments matched with their current managers
 
+-- PREVIOUS ATTEMPS OF LAST BONUS
+
+/*
 SELECT CONCAT(e.first_name, " ", e.last_name) AS full_name, d.dept_name, MAX(s.salary) AS salary 
 FROM departments AS d
 JOIN dept_emp AS de
@@ -182,6 +182,8 @@ GROUP BY d.dept_name;
 */
 -- Subqueries appear to be the only way to accomplish task, however still cannot get just 1 name to show per dep
 -- 2 deps where highest salary has two employees making the same amount
+
+-- SUCCESSFUL ATTEMPT
 
 SELECT s.department, s.highest_salary, CONCAT(e.first_name, ' ', e.last_name) AS full_name
 FROM (
