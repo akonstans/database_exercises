@@ -37,6 +37,7 @@ SELECT * FROM new_payment;
 
 -- EMPLOYEES DB
 
+/*
 SELECT salary,
     (salary - (SELECT AVG(salary) FROM salaries))
     /
@@ -47,6 +48,7 @@ JOIN dept_emp AS de
 JOIN departments AS d
 	ON d.dept_no = de.dept_no
 GROUP BY d.dept_name, salaries.salary;
+*/;
 
 CREATE TEMPORARY TABLE noether_2027.salary AS SELECT
 de.emp_no, s.salary AS sal, d.dept_no, d.dept_name, zscore FROM departments AS d
@@ -63,7 +65,7 @@ FROM salaries) AS z
 	GROUP BY de.emp_no, s.salary, d.dept_no, d.dept_name;
 SELECT * FROM salary;
 
-SELECT dept_name, AVG(sal), AVG(zscore) FROM salary GROUP BY dept_name;
+SELECT dept_name, AVG(sal) AS dept_avg, AVG(zscore) AS avg_zscore FROM salary GROUP BY dept_name;
 -- Sales is the best department to work for and Quality Management is the worst
 
 

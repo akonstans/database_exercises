@@ -12,12 +12,15 @@ JOIN titles AS t
 	ON t.emp_no = e.emp_no;
 -- All current employees named Aamod and all their positions past and present
 
-SELECT COUNT(emp_no) FROM (SELECT e.emp_no FROM employees AS e
+SELECT COUNT(f.emp_no), f.first_name, f.last_name FROM (SELECT first_name, last_name, emp_no FROM employees) AS f
 JOIN dept_emp AS de
-	ON de.emp_no = e.emp_no
+	ON de.emp_no = f.emp_no
 JOIN salaries AS s
-	ON s.emp_no = e.emp_no
-WHERE de.to_date < NOW() AND s.to_date < NOW()) AS f;
+	ON s.emp_no = f.emp_no
+JOIN titles AS t
+	ON t.emp_no = f.emp_no
+WHERE de.to_date < CURDATE() AND t.to_date < CURDATE() AND s.to_date < CURDATE()
+GROUP BY f.first_name, f.last_name;
 -- There are 592150 employees no longer at the company
 
 SELECT l.full_name, l.dept_name, l.gender FROM (
