@@ -1,7 +1,9 @@
 SELECT first_name, last_name, emp_no FROM employees 
+JOIN dept_emp AS de
+	USING(emp_no)
 WHERE hire_date = (
 SELECT hire_date FROM employees 
-WHERE emp_no = 101010);
+WHERE emp_no = 101010 AND de.to_date > CURDATE());
 -- Employees with same hire date as employee 101010
 
 SELECT title, first_name FROM (SELECT first_name, employees.emp_no FROM employees

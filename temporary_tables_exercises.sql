@@ -69,7 +69,7 @@ SELECT dept_name, AVG(sal) AS dept_avg, AVG(zscore) AS avg_zscore FROM salary GR
 -- Sales is the best department to work for and Quality Management is the worst
 
 
-DROP TABLE noether_2027.salary;
+DROP TABLE IF EXISTS noether_2027.salary;
 
 
 
