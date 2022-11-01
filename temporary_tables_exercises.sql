@@ -21,7 +21,15 @@ SELECT * FROM employees_with_departments;
 
 SELECT * FROM payment;
 DESCRIBE payment;
+CREATE TEMPORARY TABLE noether_2027.new_payment AS SELECT amount, amount * 100 AS pennies FROM payment;
 
+ALTER TABLE new_payment ADD n_pennies INT(5) UNSIGNED;
+
+UPDATE new_payment SET n_pennies = pennies;
+
+SELECT * FROM new_payment;
+
+DROP TABLE new_payment;
 -- NOETHER DB
 
 CREATE TEMPORARY TABLE new_payment(
